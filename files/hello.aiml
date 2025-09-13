@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+    <pattern>HELLO</pattern>
+    <template>
+        <map name="resources">hello</map><delay>1</delay>
+        
+        <condition name="isIntroShown">
+            <li value="1"></li>
+            <li>
+                <map name="resources">intro</map><delay>4</delay>
+                <think><set name="isIntroShown">1</set></think>
+            </li>
+        </condition>
+        
+        <condition name="isInstructionsShown">
+            <li value="1"></li>
+            <li>
+                <map name="resources">instructions</map><delay>6</delay>
+                <think><set name="isInstructionsShown">1</set></think>
+            </li>
+        </condition>
+        
+        <condition name="isInstructionsShown">
+            <li value="1"><map name="resources">continue</map></li>
+            <li><map name="resources">ready</map> </li>
+        </condition>
+        
+        <think><set name="topic">READY</set></think>
+
+    </template>
+</category>
+
+<category>
+    <pattern>HELLO *</pattern>
+    <template><srai>HELLO</srai></template>
+</category>
+
+<category>
+    <pattern>HI</pattern>
+    <template><srai>HELLO</srai></template>
+</category>
+
+<category>
+    <pattern>HI *</pattern>
+    <template><srai>HELLO</srai></template>
+</category>
+
+</aiml>

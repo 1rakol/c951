@@ -1,0 +1,8 @@
+[
+["hello", "Hello!"],
+["intro", "I'm a little helper of your career counselor. I aim to give you brief feedback on the best possible career for you, a computer science graduate."],
+["instructions", "I will show you a few statements, and would like you to think about how they apply to you. Please provide your level of agreement (or disagreement) on the scale from 1 to 5, where 1 = strongly disagree, 3 = neutral, and 5 = strongly agree."],
+["ready", "Are you ready?"],
+["continue", "Should we continue?"],
+["needInstructions", "Would you like to see instructions again?"]
+]

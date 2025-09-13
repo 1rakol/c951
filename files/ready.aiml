@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="READY">
+
+    <category>
+        <pattern>YES</pattern>
+        <template>
+            Boo
+        </template>
+    </category>
+    
+    <category>
+        <pattern>SURE</pattern>
+        <template><srai>YES</srai></template>
+    </category>
+    
+    <category>
+        <pattern>I AM</pattern>
+        <template><srai>YES</srai></template>
+    </category>
+    
+    <category>
+        <pattern>NO</pattern>
+        <template>
+            Whenever you are ready, you can restart this conversation by typing "start over". For now, have a great day.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>NOT YET</pattern>
+        <template><srai>NO</srai></template>
+    </category>
+    
+</topic>    
+
+</aiml>
