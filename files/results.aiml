@@ -64,6 +64,8 @@
             </condition>
             
             <think><set name="currentQuestionIndex">1</set></think>
+            
+            <srai>EXIT</srai>
 
         </template>
     </category>
@@ -75,6 +77,13 @@
             <think>
                 <set var="explodedHollandCodes"><explode><star /></explode></set>
                 <set var="isReturnValueSet">FALSE</set>
+                
+                <set var="rValue"><get name="rCode" /></set>
+                <set var="iValue"><get name="iCode" /></set>
+                <set var="aValue"><get name="aCode" /></set>
+                <set var="sValue"><get name="sCode" /></set>
+                <set var="eValue"><get name="eCode" /></set>
+                <set var="cValue"><get name="cCode" /></set>
             </think>
             
             <condition var="explodedHollandCodes">
@@ -82,33 +91,33 @@
                 <li>
                     <think>
                         <set var="currentCode"><first><get var="explodedHollandCodes" /></first></set>
-                        <set var="maxValue"><srai>XMAX <get name="rCode" /> <get name="iCode" /> <get name="aCode" /> <get name="sCode" /> <get name="eCode" /> <get name="cCode" /></srai></set>
+                        <set var="maxValue"><srai>XMAX <get var="rValue" /> <get var="iValue" /> <get var="aValue" /> <get var="sValue" /> <get var="eValue" /> <get var="cValue" /></srai></set>
                         <set var="explodedHollandCodes"><rest><get var="explodedHollandCodes" /></rest> </set>
                         
                         <condition var="currentCode">
                             <li value="R">
-                                <set var="currentValue"><get name="rCode" /></set>
-                                <set name="rCode">0</set>
+                                <set var="currentValue"><get var="rValue" /></set>
+                                <set var="rValue">0</set>
                             </li>
                             <li value="I">
-                                <set var="currentValue"><get name="iCode" /></set>
-                                <set name="iCode">0</set>
+                                <set var="currentValue"><get var="iValue" /></set>
+                                <set var="iValue">0</set>
                             </li>
                             <li value="A">
-                                <set var="currentValue"><get name="aCode" /></set>
-                                <set name="aCode">0</set>
+                                <set var="currentValue"><get var="aValue" /></set>
+                                <set var="aValue">0</set>
                             </li>
                             <li value="S">
-                                <set var="currentValue"><get name="sCode" /></set>
-                                <set name="sCode">0</set>
+                                <set var="currentValue"><get var="sValue" /></set>
+                                <set var="sValue">0</set>
                             </li>
                             <li value="E">
-                                <set var="currentValue"><get name="eCode" /></set>
-                                <set name="eCode">0</set>
+                                <set var="currentValue"><get var="eValue" /></set>
+                                <set var="eValue">0</set>
                             </li>
                             <li value="C">
-                                <set var="currentValue"><get name="cCode" /></set>
-                                <set name="cCode">0</set>
+                                <set var="currentValue"><get var="cValue" /></set>
+                                <set var="cValue">0</set>
                             </li>
                         </condition>
                         
