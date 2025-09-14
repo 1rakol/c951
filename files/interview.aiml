@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="INTERVIEW">
+
+    <category>
+        <pattern>QUESTIONS</pattern>
+        <template>
+
+            <condition name="currentQuestionIndex">
+                <li value="unknown">
+                    <think><set name="currentQuestionIndex">1</set></think>
+                </li>
+            </condition>
+
+            Statement:<break/>
+            "<map name="num2questions"><get name="currentQuestionIndex" /></map>"<split />
+            
+            <reply>
+                <text>1</text>
+                <postback>1</postback>
+            </reply>
+            
+            <reply>
+                <text>2</text>
+                <postback>2</postback>
+            </reply>
+            
+            <reply>
+                <text>3</text>
+                <postback>3</postback>
+            </reply>
+            
+            <reply>
+                <text>4</text>
+                <postback>4</postback>
+            </reply>
+            
+            <reply>
+                <text>5</text>
+                <postback>5</postback>
+            </reply>
+
+        </template>
+    </category>
+    
+    <category>
+        <pattern><set>responses</set></pattern>
+        <template>
+            
+            <think>
+                <set name="currentCode"><map name="num2traits"><get name="currentQuestionIndex" /></map></set>
+                <condition name="currentCode">
+                    <li value="R"><set name="rCode"><star/></set></li>
+                    <li value="I"><set name="iCode"><star/></set></li>
+                    <li value="A"><set name="aCode"><star/></set></li>
+                    <li value="S"><set name="sCode"><star/></set></li>
+                    <li value="E"><set name="eCode"><star/></set></li>
+                    <li value="C"><set name="cCode"><star/></set></li>
+                </condition>
+
+                <set name="invalidAnswersCount">0</set>
+                <set name="currentQuestionIndex"><map name="successor"><get name="currentQuestionIndex" /></map></set>
+            </think>
+            
+            <condition name="currentQuestionIndex">
+                <li value="7">
+                    <think><set name="topic">RESULTS</set></think>
+                    <srai>RESULTS</srai>
+                </li>
+                <li>
+                    <srai>QUESTIONS</srai>
+                </li>
+            </condition>
+
+        </template>
+    </category>
+    
+    <category>
+        <pattern>*</pattern>
+        <template>
+ 
+             <condition name="invalidAnswersCount">
+                <li value="unknown">
+                    <think><set name="invalidAnswersCount">0</set></think>
+                </li>
+            </condition>
+ 
+            <condition name="invalidAnswersCount">
+                <li value="2">
+                    
+                    <think><set name="invalidAnswersCount">0</set></think>
+                    
+                    Well, this isn't working. Let's start over, shall we?<delay>2</delay>
+                    <srai>START OVER</srai>
+                    
+                </li>
+                <li>
+                    <think>
+                        <set name="invalidAnswersCount"><map name="successor"><get name="invalidAnswersCount" /></map></set>
+                    </think>
+                    
+                    Statement:<break/>
+                    "<map name="num2questions"><get name="currentQuestionIndex" /></map>"<split />
+                    
+                    <random>
+                        <li>I’m not sure I understood your answer. 1 to 5, please.</li>
+                        <li>Please give me 1, 2, 3, 4, or 5.</li>
+                        <li>I can’t help you unless I get a 1 to 5 answer.</li>
+                    </random>
+                    
+                    <reply>
+                        <text>1</text>
+                        <postback>1</postback>
+                    </reply>
+                    
+                    <reply>
+                        <text>2</text>
+                        <postback>2</postback>
+                    </reply>
+                    
+                    <reply>
+                        <text>3</text>
+                        <postback>3</postback>
+                    </reply>
+                    
+                    <reply>
+                        <text>4</text>
+                        <postback>4</postback>
+                    </reply>
+                    
+                    <reply>
+                        <text>5</text>
+                        <postback>5</postback>
+                    </reply>
+                    
+                </li>
+            </condition>
+                
+        </template>
+    </category>
+
+</topic>
+
+</aiml>

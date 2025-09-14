@@ -2,6 +2,6 @@
 <aiml>
   <category>
     <pattern>*</pattern>
-    <template>They haven’t taught me how to answer this.</template>
+    <template>They haven’t taught me how to answer this. If you want to start over, just type "reset".</template>
   </category>
 </aiml>

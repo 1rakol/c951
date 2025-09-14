@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+    <pattern># HELP ^</pattern>
+    <template>
+        <think><set name="topic">INSTRUCTIONS</set></think>
+        <srai>YES</srai>
+    </template>
+</category>
+
+<category>
+    <pattern># INSTRUCTIONS ^</pattern>
+    <template><srai># HELP ^</srai></template>
+</category>
+
+<topic name="INSTRUCTIONS">
+
+    <category>
+        <pattern>YES</pattern>
+        <template>
+            <map name="resources">instructions</map><delay>6</delay>
+            <map name="resources">continue</map>
+            <think>
+                <set name="invalidAnswersCount">0</set>
+                <set name="topic">READY</set>
+            </think>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>SURE</pattern>
+        <template><srai>YES</srai></template>
+    </category>
+    
+    <category>
+        <pattern>I DO</pattern>
+        <template><srai>YES</srai></template>
+    </category>
+    
+    <category>
+        <pattern>NO</pattern>
+        <template>
+            <think><set name="topic">READY</set></think>
+            <srai>YES</srai>
+        </template>
+    </category>
+
+</topic>
+
+</aiml>

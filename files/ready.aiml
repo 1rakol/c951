@@ -6,7 +6,10 @@
     <category>
         <pattern>YES</pattern>
         <template>
-            Boo
+            <think>
+                <set name="topic">INTERVIEW</set>
+            </think>
+            <srai>QUESTIONS</srai>
         </template>
     </category>
     
@@ -23,7 +26,7 @@
     <category>
         <pattern>NO</pattern>
         <template>
-            Whenever you are ready, you can restart this conversation by typing "start over". For now, have a great day.
+            Whenever you are ready, you can restart this evaluation by typing "reset". For now, have a great day.
         </template>
     </category>
     

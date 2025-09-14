@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="RESULTS">
+
+    <category>
+        <pattern>RESULTS2</pattern>
+        <template>
+            Here are results.<delay>2</delay>
+            
+            <think><set name="topic">READY</set></think>
+            <srai>NO</srai>
+        </template>
+    </category>
+    
+   <category>
+        <pattern>RESULTS</pattern>
+        <template>
+            
+            <think>
+                <set var="lenHollandCodes">6</set>
+                <set var="matchingCareers"> </set>
+            </think>
+
+            <condition var="lenHollandCodes">
+                <li value="0"></li>
+                <li>
+                    <think>
+                        <set var="hollandCode"><map name="num2hollandcodes"><get var="lenHollandCodes" /></map></set>
+                        <set var="hollandCodeIsMatched"><srai>HOLLAND CODE MATCH <get var="hollandCode" /></srai></set>
+                        
+                        <condition var="hollandCodeIsMatched">
+                            <li value="TRUE">
+                                
+                                <condition var="matchingCareers">
+                                    <li value=" "></li>
+                                    <li><set var="matchingCareers"><get var="matchingCareers" />, </set></li>
+                                </condition>
+
+                                <set var="matchingCareers"><get var="matchingCareers" /><map name="num2careers"><map name="hollandcodes2careers"><get var="hollandCode" /></map></map></set>
+                            </li>
+                        </condition>
+ 
+                       <set var="lenHollandCodes"><map name="predecessor"><get var="lenHollandCodes" /></map></set>
+                    </think>
+
+                    <loop />
+                </li>
+                
+            </condition>         
+
+            <condition var="matchingCareers">
+                <li value=" ">
+                    My, my…<break />
+                    I have no idea how you could fit into a computer science career.<delay>2</delay>
+                    Sorry.<delay>2</delay>
+                </li>
+                <li>
+                    Here are some good choices for you careerwise:<break /><break />
+                    <get var="matchingCareers" />.<delay>2</delay>
+                </li>
+            </condition>
+            
+            <think><set name="currentQuestionIndex">1</set></think>
+
+        </template>
+    </category>
+    
+    <category>
+        <pattern>HOLLAND CODE MATCH *</pattern>
+        <template>
+            TRUE
+        </template>
+    </category>
+    
+</topic>
+
+</aiml>
