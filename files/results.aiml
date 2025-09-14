@@ -26,9 +26,10 @@
                 <li value="0"></li>
                 <li>
                     <think>
+                        
                         <set var="hollandCode"><map name="num2hollandcodes"><get var="lenHollandCodes" /></map></set>
                         <set var="hollandCodeIsMatched"><srai>HOLLAND CODE MATCH <get var="hollandCode" /></srai></set>
-                        
+
                         <condition var="hollandCodeIsMatched">
                             <li value="TRUE">
                                 
@@ -37,11 +38,12 @@
                                     <li><set var="matchingCareers"><get var="matchingCareers" />, </set></li>
                                 </condition>
 
-                                <set var="matchingCareers"><get var="matchingCareers" /><map name="num2careers"><map name="hollandcodes2careers"><get var="hollandCode" /></map></map></set>
+                                <set var="matchingCareers"><get var="matchingCareers" /><map name="num2careers"><map name="hollandcodes2careernums"><get var="hollandCode" /></map></map></set>
                             </li>
                         </condition>
  
                        <set var="lenHollandCodes"><map name="predecessor"><get var="lenHollandCodes" /></map></set>
+                       
                     </think>
 
                     <loop />
@@ -56,7 +58,7 @@
                     Sorry.<delay>2</delay>
                 </li>
                 <li>
-                    Here are some good choices for you careerwise:<break /><break />
+                    Here are some good choices for you careerwise:<split />
                     <get var="matchingCareers" />.<delay>2</delay>
                 </li>
             </condition>
@@ -69,7 +71,70 @@
     <category>
         <pattern>HOLLAND CODE MATCH *</pattern>
         <template>
-            TRUE
+
+            <think>
+                <set var="explodedHollandCodes"><explode><star /></explode></set>
+                <set var="isReturnValueSet">FALSE</set>
+            </think>
+            
+            <condition var="explodedHollandCodes">
+                <li value=" "></li>
+                <li>
+                    <think>
+                        <set var="currentCode"><first><get var="explodedHollandCodes" /></first></set>
+                        <set var="maxValue"><srai>XMAX <get name="rCode" /> <get name="iCode" /> <get name="aCode" /> <get name="sCode" /> <get name="eCode" /> <get name="cCode" /></srai></set>
+                        <set var="explodedHollandCodes"><rest><get var="explodedHollandCodes" /></rest> </set>
+                        
+                        <condition var="currentCode">
+                            <li value="R">
+                                <set var="currentValue"><get name="rCode" /></set>
+                                <set name="rCode">0</set>
+                            </li>
+                            <li value="I">
+                                <set var="currentValue"><get name="iCode" /></set>
+                                <set name="iCode">0</set>
+                            </li>
+                            <li value="A">
+                                <set var="currentValue"><get name="aCode" /></set>
+                                <set name="aCode">0</set>
+                            </li>
+                            <li value="S">
+                                <set var="currentValue"><get name="sCode" /></set>
+                                <set name="sCode">0</set>
+                            </li>
+                            <li value="E">
+                                <set var="currentValue"><get name="eCode" /></set>
+                                <set name="eCode">0</set>
+                            </li>
+                            <li value="C">
+                                <set var="currentValue"><get name="cCode" /></set>
+                                <set name="cCode">0</set>
+                            </li>
+                        </condition>
+                        
+                        <set var="currentValueIsMax"><srai>XSUB <get var="maxValue" /> XS <get var="currentValue" /></srai></set>
+                    </think>
+                    
+                    <condition var="currentValueIsMax">
+                        <li value="0"></li>
+                        <li>
+                            FALSE
+                            
+                            <think>
+                                <set var="explodedHollandCodes"> </set>
+                                <set var="isReturnValueSet">TRUE</set>
+                            </think>
+                        </li>
+                    </condition>
+                    
+                    <loop />
+                </li>
+            </condition>
+            
+            <condition var="isReturnValueSet">
+                <li value="FALSE">TRUE</li>
+            </condition>
+
         </template>
     </category>
     
